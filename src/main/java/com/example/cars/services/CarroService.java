@@ -31,7 +31,7 @@ public class CarroService {
     }
 
     public CarroDTO save(Carro carro) {
-        Assert.notNull(carro.getId());
+        Assert.isNull(carro.getId());
 
         carroRepository.save(carro);
 

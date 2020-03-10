@@ -27,4 +27,9 @@ public class Carro {
     @Column
     private String tipo;
 
+    @Column
+    private String latitude;
+
+    @Column
+    private String longitude;
 }
