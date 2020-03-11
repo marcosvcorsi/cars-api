@@ -8,9 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
-import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest
 class CarroServiceTest {
@@ -27,9 +27,9 @@ class CarroServiceTest {
 
 	@Test
 	public void findOneCarTest() {
-		Optional<CarroDTO> optional = carroService.get(11L);
+		CarroDTO carroDTO = carroService.get(11L);
 
-		assertTrue(optional.isPresent());
+		assertNotNull(carroDTO);
 	}
 
 	@Test
@@ -47,10 +47,8 @@ class CarroServiceTest {
 
 		CarroDTO carroDTO = carroService.save(carro);
 
-		Optional<CarroDTO> optional = carroService.get(carroDTO.getId());
-		assertTrue(optional.isPresent());
-
-		CarroDTO carroLoaded = optional.get();
+		CarroDTO carroLoaded = carroService.get(carroDTO.getId());
+		assertNotNull(carroLoaded);
 
 		assertEquals(carro.getNome(), carroLoaded.getNome());
 		assertEquals(carro.getTipo(), carroLoaded.getTipo());
